@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     padding: 40px;
     font-size: 25px;
-    border: 10px solid rgba(117, 31, 31, 0.58);
+    /*border: 10px solid rgba(117, 31, 31, 0.58);*/
     width: 600px;
     height: 700px;
     justify-content: center;

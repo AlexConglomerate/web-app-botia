@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./form.css"
-import objFlow from "../api/api";
+import api from "../api/api"
 
 function Form() {
-    const [flow, setFlow] = useState(objFlow);
+    const [flow, setFlow] = useState();
+
+    useEffect(() => {
+        api.fetchAll().then((data) => setFlow(data))
+    }, [])
 
     const flow1_to_flow2 = (i, a) => {
         flow.flow1.splice(a, 1)
@@ -24,12 +28,17 @@ function Form() {
 
 
     return (
+        // <>
+        //     {/*{JSON.stringify(flow?.flow1)}*/}
+        //     <br/>
+        //     {flow && JSON.stringify(flow)}
+        // </>
         <>
             <div className="container">
                 <div className={"my-form"}>
                     <div className={"form-2"}>
-                        {flow.flow1.length > 0 && "Вы записаны на потоки:"}
-                        {flow.flow1.map((i, a) => (
+                        {flow?.flow1.length > 0 && "Вы записаны на потоки:"}
+                        {flow?.flow1.map((i, a) => (
                             <button
                                 className={"btn btn-outline-secondary"}
                                 onClick={() => flow1_to_flow2(i, a)}
@@ -38,8 +47,8 @@ function Form() {
                     </div>
 
                     <div className={"form-2"}>
-                        {flow.flow2.length > 0 && "Можете записаться на потоки:"}
-                        {flow.flow2.map((i, a) => (
+                        {flow?.flow2.length > 0 && "Можете записаться на потоки:"}
+                        {flow?.flow2.map((i, a) => (
                             <button
                                 className={"btn btn-outline-secondary"}
                                 onClick={() => flow2_to_flow1(i, a)}
