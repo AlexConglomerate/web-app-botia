@@ -1,37 +1,42 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import "./form.css"
 import api from "../api/api"
+import flow from "../api/api";
+
 
 function Form() {
-    const [flow, setFlow] = useState();
+    const [floww, setFloww] = useState(flow);
+    // console.log(123123)
+    // useEffect(() => {
+    //     api.fetchAll().then((data) => setFlow(data))
+    //     console.log(2134214, flow)
+    // }, [])
 
-    useEffect(() => {
-        api.fetchAll().then((data) => setFlow(data))
-    }, [])
 
     const flow1_to_flow2 = (i, a) => {
-        flow.flow1.splice(a, 1)
-        flow.flow2.push(i)
+        floww.flow1.splice(a, 1)
+        floww.flow2.push(i)
         update()
     }
 
     const flow2_to_flow1 = (i, a) => {
-        flow.flow2.splice(a, 1)
-        flow.flow1.push(i)
+        floww.flow2.splice(a, 1)
+        floww.flow1.push(i)
         update()
     }
 
     const update = () => {
-        const updatedArr = {...flow}
-        setFlow(updatedArr)
+        const updatedArr = {...floww}
+        setFloww(updatedArr)
     }
 
 
     return (
         // <>
+        //     {api.fetchAll}
         //     {/*{JSON.stringify(flow?.flow1)}*/}
         //     <br/>
-        //     {flow && JSON.stringify(flow)}
+        //     {JSON.stringify(floww)}
         // </>
         <>
             <div className="container">
